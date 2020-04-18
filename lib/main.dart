@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'models/shop_list.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -125,9 +127,9 @@ class _MyHomePageState extends State<MyHomePage> {
               fontFamily: "Poppins",
             ),
           ),
-
           RaisedButton(
-            color: Colors.cyan ,
+            color: Colors.cyan,
+            textColor: Colors.white,
             child: Text('Go!'),
             onPressed: () {
               Navigator.of(context).push(_createRoute());
@@ -167,8 +169,13 @@ class Page2 extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.cyan,
       ),
-      body: Center(
-        child: Text('Page 2'),
+      body: MaterialApp(
+        title: 'ShopX',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: ShopListWidget(),
       ),
     );
   }
