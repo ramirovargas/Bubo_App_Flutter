@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'models/shop_list.dart';
+import 'models/compare_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Bubo Demo Home Page'),
+      home: MyHomePage(title: 'Login'),
     );
   }
 }
@@ -163,11 +164,281 @@ Route _createRoute() {
   );
 }
 
+Route _createRoute3() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Page3(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
+Route _createRoute4() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Page4(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
 class Page2 extends StatelessWidget {
+
+
+
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: CustomScrollView(
+      slivers: <Widget>[
+
+        SliverAppBar(
+          backgroundColor: Colors.cyan,
+          pinned:true,
+          floating:false,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text('Bubo'),
+          ),
+        ),
+
+        SliverFixedExtentList(
+          itemExtent: 100,
+          delegate: SliverChildListDelegate([
+            //Container(color:Colors.red),
+            //Container(color:Colors.green),
+
+            Container(child:ListView(children: [
+                Image.asset('assets/images/search.png')]
+            ),
+            ),
+          ]),
+        ),
+
+        SliverToBoxAdapter(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Categorias', style: TextStyle(
+                fontSize:20,
+                color:Colors.black,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.white,
+                decorationStyle: TextDecorationStyle.solid,
+            ),
+            ),
+          ),
+        ),
+
+        SliverGrid(
+          delegate: SliverChildListDelegate([
+
+            Container(
+              margin:EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                child: InkWell(
+                  onTap: () => print("ciao"),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,  // add this
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0),
+                        ),
+                        child: Image.asset('assets/images/ropa.jpg',
+                            height: 110,
+                            fit:BoxFit.fill
+                        ),
+                      ),
+                      ListTile(
+                        title: Text('Ropa y Calzado'),
+                        //subtitle: Text('Location 1'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Container(
+              margin:EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                child: InkWell(
+                  onTap: () => Navigator.of(context).push(_createRoute3()),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,  // add this
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0),
+                        ),
+                        child: Image.asset('assets/images/tecnologia.jpg',
+                            height: 110,
+                            fit:BoxFit.fill
+                        ),
+                      ),
+                      ListTile(
+                        title: Text('Tecnología'),
+                        //subtitle: Text('Location 1'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Container(
+              margin:EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                child: InkWell(
+                  onTap: () => print("ciao"),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,  // add this
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0),
+                        ),
+                        child: Image.asset('assets/images/cocina.jpg',
+                            height: 110,
+                            fit:BoxFit.fill
+                        ),
+                      ),
+                      ListTile(
+                        title: Text('Hogar y Cocina'),
+                        //subtitle: Text('Location 1'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Container(
+              margin:EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                child: InkWell(
+                  onTap: () => print("ciao"),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,  // add this
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(8.0),
+                          topRight: Radius.circular(8.0),
+                        ),
+                        child: Image.asset('assets/images/automotriz.jpg',
+                            height: 110,
+                            fit:BoxFit.fill
+                        ),
+                      ),
+                      ListTile(
+                        title: Text('Automotriz'),
+                        //subtitle: Text('Location 1'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            //Container(color:Colors.blue),
+
+          ]),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 1.0,
+          ),
+        ),
+
+        SliverToBoxAdapter(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Promocionados', style: TextStyle(
+              fontSize:20,
+              color:Colors.black,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.white,
+              decorationStyle: TextDecorationStyle.solid,
+            ),
+            ),
+          ),
+        ),
+
+        SliverFixedExtentList(
+          itemExtent: 100,
+          delegate: SliverChildListDelegate([
+            //Container(color:Colors.red),
+            //Container(color:Colors.green),
+            Container(child:ListView(children: [
+              Image.asset('assets/images/add1.png' ,
+                  height: 100,
+                  fit:BoxFit.fill)]
+            ),
+            ),
+          ]),
+        ),
+
+      ],
+    )
+    );
+  }
+}
+
+class Page4 extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      /*
+      appBar: AppBar(
+        backgroundColor: Colors.cyan,
+        title: Text("iPhone XR (Product RED)"),
+      ),
+      */
+      body: MaterialApp(
+        title: 'ShopX',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        //home: ShopListWidget(),
+        home: CompareListWidget(),
+      ),
+    );
+  }
+}
+
+class Page3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
+        title: Text("Tecnología "),
+
       ),
       body: MaterialApp(
         title: 'ShopX',
@@ -176,7 +447,9 @@ class Page2 extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: ShopListWidget(),
+        //home: CompareListWidget(),
       ),
     );
   }
 }
+

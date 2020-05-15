@@ -1,16 +1,37 @@
 import 'package:buboapp/models/shopping_cart.dart';
 import 'package:flutter/material.dart';
 
-import '../cart_list.dart';
+//import '../cart_list.dart';
 import 'item.dart';
+import '../main.dart';
+
 class ShopListWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _ShopListState();
   }
 }
+
+Route _createRoute4() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Page4(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
 class _ShopListState extends State<ShopListWidget> {
-  ShoppingCart cart = ShoppingCart();
+  //ShoppingCart cart = ShoppingCart();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<Item> items = Item.dummyItems;
   @override
@@ -30,10 +51,11 @@ class _ShopListState extends State<ShopListWidget> {
       final item = this.items[x];
       items.add(_ShopListItem(
         item: item,
-        isInCart: cart.isExists(item),
+        //isInCart: cart.isExists(item),
         isSideLine: isSideLine,
         onTap: (item) {
           _scaffoldKey.currentState.hideCurrentSnackBar();
+          /*
           if (cart.isExists(item)) {
             cart.remove(item);
             _scaffoldKey.currentState.showSnackBar(SnackBar(
@@ -49,6 +71,8 @@ class _ShopListState extends State<ShopListWidget> {
               content: Text('Item is out of stock!'),
             ));
           }
+
+          */
           this.setState(() {});
         },
       ));
@@ -61,6 +85,7 @@ class _ShopListState extends State<ShopListWidget> {
           crossAxisCount: columnCount,
           children: items,
         ),
+        /*
         floatingActionButton: cart.isEmpty
             ? null
             : FloatingActionButton.extended(
@@ -72,7 +97,10 @@ class _ShopListState extends State<ShopListWidget> {
           },
           icon: Icon(Icons.shopping_cart),
           label: Text("${cart.numOfItems}"),
-        ));
+        )
+        */
+
+    );
   }
 }
 class _ShopListItem extends StatelessWidget {
@@ -92,7 +120,7 @@ class _ShopListItem extends StatelessWidget {
       border = Border(bottom: BorderSide(color: Colors.grey, width: 0.5));
     }
     return InkWell(
-        onTap: () => this.onTap(item),
+        onTap: () => Navigator.of(context).push(_createRoute4()),
         child: Container(
             decoration: BoxDecoration(border: border),
             child: Column(
@@ -129,12 +157,16 @@ class _ShopListItem extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(top: 16),
                 ),
+
+                /*
                 Text(this.isInCart ? "In Cart" : item.formattedAvailability,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.caption.apply(
                         fontSizeFactor: 0.8,
                         color:
                         isInCart ? Colors.blue : item.availabilityColor)),
+                */
+
               ],
             )));
   }

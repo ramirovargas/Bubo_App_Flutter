@@ -22,9 +22,9 @@ class Item {
   static List<Item> get dummyItems => [
     Item(
         id: "1",
-        name: "iPhone X (Product RED)             ",
+        name: "iPhone XR (Product RED)             ",
         description: 'More magical than ever.',
-        price: 12499999,
+        price: 3229000,
         inStock: true,
         imageUrl:
         'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/image/AppleInc/aos/published/images/i/ph/iphone/xr/iphone-xr-red-select-201809?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1551226038669'),
